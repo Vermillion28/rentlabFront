@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { jwtDecode } from 'jwt-decode';
+// import { jwtDecode } from 'jwt-decode';
 import styles from '@/styles/index.module.css';
 import Image from 'next/image';
 
@@ -11,37 +11,37 @@ const [userRole, setUserRole] = useState(null);
 const [isLoading, setIsLoading] = useState(true);
 
 // Au lieu de stocker userRole séparément, décodez-le toujours depuis le token
-useEffect(() => {
-  if (typeof window === 'undefined') {
-    setIsLoading(false);
-    return;
-  }
+// useEffect(() => {
+//   if (typeof window === 'undefined') {
+//     setIsLoading(false);
+//     return;
+//   }
 
-  const token = localStorage.getItem('token');
+//   const token = localStorage.getItem('token');
   
-  if (token) {
-    try {
-      const decoded = jwtDecode(token);
-      setUserRole(decoded.role);
+//   if (token) {
+//     try {
+//       const decoded = jwtDecode(token);
+//       setUserRole(decoded.role);
       
-      if (decoded.role === 'proprietaire') {
-        router.push('/proprietaire/dashboard');
-      } else if (decoded.role === 'locataire') {
-        router.push('/locataire/dashboard');
-      }
-    } catch (err) {
-      console.error('Token invalide :', err);
-      localStorage.removeItem('token');
-      setUserRole(null);
-    }
-  }
+//       if (decoded.role === 'proprietaire') {
+//         router.push('/proprietaire/dashboard');
+//       } else if (decoded.role === 'locataire') {
+//         router.push('/locataire/dashboard');
+//       }
+//     } catch (err) {
+//       console.error('Token invalide :', err);
+//       localStorage.removeItem('token');
+//       setUserRole(null);
+//     }
+//   }
   
-  setIsLoading(false);
-}, [router]);
+//   setIsLoading(false);
+// }, [router]);
 
-if (isLoading) {
-  return <div className={styles.loader}>Chargement...</div>;
-}
+// if (isLoading) {
+//   return <div className={styles.loader}>Chargement...</div>;
+// }
 
   return (
     <div className={styles.body}>
@@ -56,15 +56,15 @@ if (isLoading) {
             </div>
 
             <nav className={styles.nav}>
-              <a href="#fonctionnalites">Fonctionnalités</a>
-              <a href="#proprietaires">Propriétaires</a>
-              <a href="#locataires">Locataires</a>
-              <a href="#contact">Contact</a>
+
+              <a href="/proprietaire/dashboard">Propriétaires</a>
+              <a href="/locataire/dashboard">Locataires</a>
+
             </nav>
 
             <div className={styles.authButtons}>
-              <a href="/login" className={`${styles.btn} ${styles.btnGhost}`} role="button">Connexion</a>
-              <a href="/register" className={`${styles.btn} ${styles.btnPrimary}`} role="button">Inscription</a>
+              <a href="/connexion" className={`${styles.btn} ${styles.btnGhost}`} role="button">Connexion</a>
+              <a href="/inscription-simple" className={`${styles.btn} ${styles.btnPrimary}`} role="button">Inscription</a>
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ if (isLoading) {
             </p>
 
             <div className={styles.heroButtons}>
-              <a href="/register" className={`${styles.btn} ${styles.btnWhite}`} role="button">Commencer maintenant</a>
+              <a href="/inscription" className={`${styles.btn} ${styles.btnWhite}`} role="button">Commencer maintenant</a>
             </div>
           </div>
         </div>

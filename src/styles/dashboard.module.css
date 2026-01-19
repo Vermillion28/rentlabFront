@@ -1,0 +1,673 @@
+/* dashboard.module.css */
+.container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.content {
+  max-width: 1400px;
+  margin: 0;
+  padding: 00px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.titleIcon {
+  color: #4f46e5;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.refreshButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.refreshButton:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.refreshButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Statistiques principales */
+.mainStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .mainStatsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mainStatsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Cartes de statistiques */
+.statCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.statCard.primary {
+  border-left: 4px solid #4f46e5;
+}
+
+.statCard.revenue {
+  border-left: 4px solid #10b981;
+}
+
+.statCard.occupation {
+  border-left: 4px solid #f59e0b;
+}
+
+.statCard.contrats {
+  border-left: 4px solid #3b82f6;
+}
+
+.statCard.locataires {
+  border-left: 4px solid #8b5cf6;
+}
+
+.statCard.warning {
+  border-left: 4px solid #ef4444;
+}
+
+.statCard.secondary {
+  border-left: 4px solid #6b7280;
+}
+
+.statCardContent {
+  padding: 0 24px;
+}
+
+.statCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.statIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+}
+
+.statCard.revenue .statIcon {
+  background-color: #d1fae5;
+  color: #10b981;
+}
+
+.statCard.occupation .statIcon {
+  background-color: #fef3c7;
+  color: #f59e0b;
+}
+
+.statCard.contrats .statIcon {
+  background-color: #dbeafe;
+  color: #3b82f6;
+}
+
+.statCard.locataires .statIcon {
+  background-color: #ede9fe;
+  color: #8b5cf6;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.statTitle {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.statSubtitle {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.changeBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 20px;
+}
+
+.changeBadge.positive {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.changeBadge.negative {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* Statistiques secondaires */
+.secondaryStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 640px) {
+  .secondaryStatsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .secondaryStatsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.secondaryStatsGrid .statCardContent {
+  padding: 20px;
+}
+
+.secondaryStatsGrid .statValue {
+  font-size: 24px;
+}
+
+.secondaryStatsGrid .statIcon {
+  width: 40px;
+  height: 40px;
+}
+
+/* Listes rapides */
+.listsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 1024px) {
+  .listsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.quickListCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.quickListHeader {
+  padding: 20px 24px 0;
+}
+
+.quickListTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewAllButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #4f46e5;
+  font-size: 14px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-left: auto;
+}
+
+.viewAllButton:hover {
+  color: #4338ca;
+}
+
+.quickListItems {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.quickListItem {
+  padding: 16px;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s;
+}
+
+.quickListItem:last-child {
+  border-bottom: none;
+}
+
+.quickListItem:hover {
+  background-color: #f9fafb;
+}
+
+/* Styles pour les items spécifiques */
+.contratItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contratInfo {
+  flex: 1;
+}
+
+.contratInfo strong {
+  display: block;
+  font-size: 14px;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.contratLocataire {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.contratDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.contratDate {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.expiringItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expiringInfo strong {
+  display: block;
+  font-size: 14px;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.expiringDate {
+  font-size: 12px;
+  color: #f59e0b;
+}
+
+.expiringActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.locataireItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.locataireAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #ede9fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b5cf6;
+}
+
+.locataireInfo {
+  flex: 1;
+}
+
+.locataireInfo strong {
+  display: block;
+  font-size: 14px;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.locataireEmail {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.locataireStatus {
+  color: #10b981;
+}
+
+.bienItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bienInfo strong {
+  display: block;
+  font-size: 14px;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.bienAdresse {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.bienDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.bienType {
+  font-size: 11px;
+  color: #9ca3af;
+  text-transform: capitalize;
+}
+
+.emptyQuickList {
+  padding: 40px 20px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Actions rapides */
+.quickActionsCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.quickActionsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .quickActionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .quickActionsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.quickAction {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quickAction:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateY(-2px);
+}
+
+.quickActionIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f46e5;
+}
+
+.quickActionText strong {
+  display: block;
+  font-size: 16px;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.quickActionText span {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Section de résumé */
+.summarySection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 1024px) {
+  .summarySection {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.summaryCard,
+.performanceCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.summaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.summaryItem:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.summaryLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.summaryLabel svg {
+  color: #6b7280;
+}
+
+.summaryValue {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.summaryValue strong {
+  font-size: 18px;
+  color: #1f2937;
+}
+
+.performanceContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.performanceMetric {
+  margin-bottom: 16px;
+}
+
+.metricLabel {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 8px;
+}
+
+.metricValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.metricBar {
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.metricBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+  border-radius: 4px;
+  transition: width 1s ease-in-out;
+}
+
+/* Loading State */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 16px;
+}
+
+.loadingState .spinner {
+  width: 48px;
+  height: 48px;
+  color: #4f46e5;
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .statCardContent {
+    padding: 16px;
+  }
+  
+  .statValue {
+    font-size: 24px;
+  }
+  
+  .quickAction {
+    padding: 16px;
+  }
+}

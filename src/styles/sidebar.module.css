@@ -1,0 +1,343 @@
+.sidebar {
+    width: 250px;
+    background-color: #10367D;
+    color: white;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  /* Overlay pour mobile */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .overlay {
+      display: block;
+    }
+  }
+  
+  /* Logo */
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 0 1.5rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Navigation */
+  .nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 1rem;
+    /* Préfixes pour la scrollbar */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+  
+  /* Style de la scrollbar pour WebKit */
+  .nav::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .nav::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .nav::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+  
+  .navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navItem {
+    margin-bottom: 0.5rem;
+  }
+  
+  .navLink {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+  }
+  
+  .navLink:hover, 
+  .navLink.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .navIcon {
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+  }
+  
+  .navLabel {
+    flex: 1;
+  }
+  
+  /* Contenu principal */
+  .mainContent {
+    flex: 1;
+    padding-left: 250px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+  }
+  
+  /* Header */
+  .header {
+    background-color: white;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+  }
+  
+  .pageTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+  }
+  
+  /* Bouton de menu pour mobile */
+  .menuButton {
+    display: none; /* Caché par défaut sur desktop */
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  
+  .menuIcon {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #4a5568;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  
+  .menuIcon::before,
+  .menuIcon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #4a5568;
+    left: 0;
+    transition: all 0.2s ease;
+  }
+  
+  .menuIcon::before {
+    top: -6px;
+  }
+  
+  .menuIcon::after {
+    bottom: -6px;
+  }
+  
+  /* État actif du bouton de menu */
+  .menuButton[aria-expanded="true"] .menuIcon {
+    background-color: transparent;
+  }
+  
+  .menuButton[aria-expanded="true"] .menuIcon::before {
+    -webkit-transform: rotate(45deg) translate(4px, 4px);
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+  
+  .menuButton[aria-expanded="true"] .menuIcon::after {
+    -webkit-transform: rotate(-45deg) translate(4px, -4px);
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+  
+  .headerRight {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  /* Styles responsifs */
+  @media (max-width: 992px) {
+    .menuButton {
+      display: block; /* Afficher le bouton de menu sur mobile */
+    }
+    
+    .pageTitle {
+      font-size: 1.3rem;
+    }
+    .sidebar {
+      width: 220px;
+    }
+    
+    .mainContent {
+      margin-left: 220px;
+    }
+    
+    .header {
+      flex-direction: column;
+      height: auto;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    
+    .headerRight {
+      width: 100%;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      width: 280px;
+    }
+    
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    
+    .mainContent {
+      margin-left: 0;
+    }
+    
+    .content {
+      padding: 1rem;
+    }
+  }
+  
+  /* Contenu */
+  .content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f8f9fa;
+  }
+  
+  /* Indicateur de chargement */
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #f8f9fa;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loadingSpinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* User Info */
+  .userInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9rem;
+  }
+  
+  /* Bouton de déconnexion */
+  .logoutButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #4a5568;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #f8f9fa;
+  }
+  
+  .logoutButton:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e0;
+    color: #2d3748;
+  }
+  
+  .logoutButton:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+  
+  .logoutIcon {
+    font-size: 1.1rem;
+    color: #e53e3e;
+  }
+  
