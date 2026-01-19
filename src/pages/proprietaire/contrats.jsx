@@ -556,7 +556,7 @@ export default function Contrats() {
     }
   };
   const handleExportPDF = () => {
-    alert("Fonctionnalité d'export PDF à implémenter");
+    alert("Fonctionnalité d&apos;export PDF à implémenter");
     // Implémentez ici la logique d'export PDF
   };
 
@@ -581,8 +581,8 @@ export default function Contrats() {
               />
               {(biens.length === 0 || locataires.length === 0) && (
                 <div className={styles.requirementsInfo}>
-                  {biens.length === 0 && "Ajoutez d'abord des biens. "}
-                  {locataires.length === 0 && "Ajoutez d'abord des locataires."}
+                  {biens.length === 0 && "Ajoutez d&apos;abord des biens. "}
+                  {locataires.length === 0 && "Ajoutez d&apos;abord des locataires."}
                 </div>
               )}
             </div>

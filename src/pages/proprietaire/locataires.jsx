@@ -712,7 +712,7 @@ export default function Locataires() {
                                                 ) : (
                                                     <>
                                                         <Mail size={16} />
-                                                        Envoyer l'invitation
+                                                        Envoyer l&apos;invitation
                                                     </>
                                                 )}
                                             </button>

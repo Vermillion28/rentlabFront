@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 // import { jwtDecode } from 'jwt-decode';
 import styles from '@/styles/index.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
 
@@ -57,14 +58,14 @@ const [isLoading, setIsLoading] = useState(true);
 
             <nav className={styles.nav}>
 
-              <a href="/proprietaire/dashboard">Propriétaires</a>
-              <a href="/locataire/dashboard">Locataires</a>
+              <Link href="/proprietaire/dashboard">Propriétaires</Link>
+              <Link href="/locataire/dashboard">Locataires</Link>
 
             </nav>
 
             <div className={styles.authButtons}>
-              <a href="/connexion" className={`${styles.btn} ${styles.btnGhost}`} role="button">Connexion</a>
-              <a href="/inscription-simple" className={`${styles.btn} ${styles.btnPrimary}`} role="button">Inscription</a>
+              <Link href="/connexion" className={`${styles.btn} ${styles.btnGhost}`} role="button">Connexion</Link>
+              <Link href="/inscription-simple" className={`${styles.btn} ${styles.btnPrimary}`} role="button">Inscription</Link>
             </div>
           </div>
         </div>
@@ -84,7 +85,7 @@ const [isLoading, setIsLoading] = useState(true);
             </p>
 
             <div className={styles.heroButtons}>
-              <a href="/inscription" className={`${styles.btn} ${styles.btnWhite}`} role="button">Commencer maintenant</a>
+              <Link href="/inscription" className={`${styles.btn} ${styles.btnWhite}`} role="button">Commencer maintenant</Link>
             </div>
           </div>
         </div>
@@ -139,7 +140,7 @@ const [isLoading, setIsLoading] = useState(true);
               </div>
               <div className={`${styles.featureCard} ${styles.borderSecondary}`}>
                 <h3>Historique complet</h3>
-                <p>Consultez l'historique détaillé de tous vos paiements et transactions.</p>
+                <p>Consultez l&apos;historique détaillé de tous vos paiements et transactions.</p>
               </div>
               <div className={`${styles.featureCard} ${styles.borderSecondary}`}>
                 <h3>Reçus PDF</h3>
@@ -147,7 +148,7 @@ const [isLoading, setIsLoading] = useState(true);
               </div>
               <div className={`${styles.featureCard} ${styles.borderSecondary}`}>
                 <h3>Suivi des paiements</h3>
-                <p>Visualisez l'état de vos paiements et les échéances à venir.</p>
+                <p>Visualisez l&aposétat de vos paiements et les échéances à venir.</p>
               </div>
             </div>
 
@@ -176,18 +177,18 @@ const [isLoading, setIsLoading] = useState(true);
               <div>
                 <h4>Produit</h4>
                 <ul>
-                  <li><a href="#">Fonctionnalités</a></li>
-                  <li><a href="#">Tarifs</a></li>
-                  <li><a href="#">Démo</a></li>
+                  <li><Link href="#">Fonctionnalités</Link></li>
+                  <li><Link href="#">Tarifs</Link></li>
+                  <li><Link href="#">Démo</Link></li>
                 </ul>
               </div>
 
               <div>
                 <h4>Support</h4>
                 <ul>
-                  <li><a href="#">Centre d'aide</a></li>
-                  <li><a href="#">Contact</a></li>
-                  <li><a href="#">Documentation</a></li>
+                  <li><Link href="#">Centre d&aposaide</Link></li>
+                  <li><Link href="#">Contact</Link></li>
+                  <li><Link href="#">Documentation</Link></li>
                 </ul>
               </div>
             </div>

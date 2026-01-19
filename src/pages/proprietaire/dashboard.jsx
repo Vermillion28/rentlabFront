@@ -275,7 +275,7 @@ export default function Dashboard() {
                 <Activity className={styles.titleIcon} /> Tableau de Bord
               </h1>
               <p className={styles.subtitle}>
-                Vue d'ensemble de votre activité immobilière
+                Vue d&apos;ensemble de votre activité immobilière
               </p>
             </div>
           </div>
@@ -489,7 +489,7 @@ export default function Dashboard() {
         <div className={styles.summarySection}>
           <Card className={styles.summaryCard}>
             <CardHeader>
-              <CardTitle>Résumé de l'activité</CardTitle>
+              <CardTitle>Résumé de l&apos;activité</CardTitle>
             </CardHeader>
             <CardContent>
               <div className={styles.summaryContent}>
@@ -557,7 +557,7 @@ export default function Dashboard() {
               <div className={styles.performanceContent}>
                 <div className={styles.performanceMetric}>
                   <div className={styles.metricLabel}>
-                    Taux d'occupation
+                    Taux d&apos;occupation
                   </div>
                   <div className={styles.metricValue}>
                     {stats.tauxOccupation.toFixed(1)}%
