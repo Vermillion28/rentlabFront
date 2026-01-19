@@ -6,12 +6,12 @@ import { FiUser, FiMail, FiLock, FiCheck, FiArrowRight, FiHome, FiUserCheck } fr
 import axios from 'axios';
 import styles from '@/styles/auth.module.css';
 
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+// const api = axios.create({
+//   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// });
 
 export default function Inscription() {
   const router = useRouter();
@@ -37,34 +37,34 @@ export default function Inscription() {
   const [userType, setUserType] = useState('proprietaire'); // 'proprietaire' ou 'locataire'
 
   // Vérifier si on a un token d'invitation dans l'URL
-  useEffect(() => {
-    if (router.query.token) {
-      const tokenValue = router.query.token;
-      setToken(tokenValue);
-      setUserType('locataire'); // Automatiquement locataire si token présent
-      fetchInvitationDetails(tokenValue);
-    }
+  // useEffect(() => {
+  //   if (router.query.token) {
+  //     const tokenValue = router.query.token;
+  //     setToken(tokenValue);
+  //     setUserType('locataire'); // Automatiquement locataire si token présent
+  //     fetchInvitationDetails(tokenValue);
+  //   }
 
-    if (router.query.email) {
-      const emailValue = router.query.email;
-      setPrefilledEmail(emailValue);
-      setFormData(prev => ({ ...prev, email: emailValue }));
-    }
-  }, [router.query]);
+  //   if (router.query.email) {
+  //     const emailValue = router.query.email;
+  //     setPrefilledEmail(emailValue);
+  //     setFormData(prev => ({ ...prev, email: emailValue }));
+  //   }
+  // }, [router.query]);
 
   // Récupérer les détails de l'invitation
-  const fetchInvitationDetails = async (token) => {
-    setIsLoadingInvitation(true);
-    try {
-      const response = await api.get(`/invitations/validate/${token}`);
-      setInvitationDetails(response.data.invitation);
-    } catch (error) {
-      console.error('Erreur chargement invitation:', error);
-      setSubmitError('Invitation invalide ou expirée');
-    } finally {
-      setIsLoadingInvitation(false);
-    }
-  };
+  // const fetchInvitationDetails = async (token) => {
+  //   setIsLoadingInvitation(true);
+  //   try {
+  //     const response = await api.get(`/invitations/validate/${token}`);
+  //     setInvitationDetails(response.data.invitation);
+  //   } catch (error) {
+  //     console.error('Erreur chargement invitation:', error);
+  //     setSubmitError('Invitation invalide ou expirée');
+  //   } finally {
+  //     setIsLoadingInvitation(false);
+  //   }
+  // };
 
   // Gestion des changements dans les champs du formulaire
   const handleChange = (e) => {
@@ -148,68 +148,68 @@ const handleSubmit = async (e) => {
   setIsLoading(true);
   setSubmitError('');
 
-  try {
-    // Préparer les données à envoyer
-    const dataToSend = {
-      nom: formData.nom.trim(),
-      email: formData.email.trim().toLowerCase(),
-      password: formData.password,
-      phone: formData.phone.trim() || null,
-      token: userType === 'locataire' ? token : undefined
-    };
+  // try {
+  //   // Préparer les données à envoyer
+  //   const dataToSend = {
+  //     nom: formData.nom.trim(),
+  //     email: formData.email.trim().toLowerCase(),
+  //     password: formData.password,
+  //     phone: formData.phone.trim() || null,
+  //     token: userType === 'locataire' ? token : undefined
+  //   };
 
-    console.log('📤 Données envoyées au backend:', {
-      ...dataToSend,
-      password: '***'
-    });
+  //   console.log('📤 Données envoyées au backend:', {
+  //     ...dataToSend,
+  //     password: '***'
+  //   });
 
-    // Envoi des données au backend - LE BACKEND GÈRE LA VÉRIFICATION
-    const response = await api.post('/auth/register', dataToSend);
+  //   // Envoi des données au backend - LE BACKEND GÈRE LA VÉRIFICATION
+  //   const response = await api.post('/auth/register', dataToSend);
     
-    console.log('✅ Réponse du backend:', response.data);
+  //   console.log('✅ Réponse du backend:', response.data);
 
-    // Succès
-    setFormData({
-      nom: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      phone: ''
-    });
+  //   // Succès
+  //   setFormData({
+  //     nom: '',
+  //     email: '',
+  //     password: '',
+  //     confirmPassword: '',
+  //     phone: ''
+  //   });
 
-    setIsSuccess(true);
+  //   setIsSuccess(true);
 
-    // Redirection
-    setTimeout(() => {
-      router.push('/connexion');
-    }, 3000);
+  //   // Redirection
+  //   setTimeout(() => {
+  //     router.push('/connexion');
+  //   }, 3000);
 
-  } catch (error) {
-    console.error('❌ Erreur:', error);
+  // } catch (error) {
+  //   console.error('❌ Erreur:', error);
     
-    if (error.response?.data?.message) {
-      setSubmitError(error.response.data.message);
-    } else {
-      setSubmitError('Erreur lors de l\'inscription');
-    }
-  } finally {
-    setIsLoading(false);
-  }
+  //   if (error.response?.data?.message) {
+  //     setSubmitError(error.response.data.message);
+  //   } else {
+  //     setSubmitError('Erreur lors de l\'inscription');
+  //   }
+  // } finally {
+  //   setIsLoading(false);
+  // }
 };
 
-  // Afficher un chargement pendant la vérification de l'invitation
-  if (isLoadingInvitation) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.card}>
-          <div className={styles.loadingState}>
-            <span className={styles.spinner}></span>
-            <p>Vérification de votre invitation...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // // Afficher un chargement pendant la vérification de l'invitation
+  // if (isLoadingInvitation) {
+  //   return (
+  //     <div className={styles.container}>
+  //       <div className={styles.card}>
+  //         <div className={styles.loadingState}>
+  //           <span className={styles.spinner}></span>
+  //           <p>Vérification de votre invitation...</p>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={styles.container}>
@@ -252,7 +252,7 @@ const handleSubmit = async (e) => {
                 </p>
               )}
               <p className={styles.expiryInfo}>
-                ⏰ Cette invitation expire le {new Date(invitationDetails.expires_at).toLocaleDateString('fr-FR')}
+                Cette invitation expire le {new Date(invitationDetails.expires_at).toLocaleDateString('fr-FR')}
               </p>
             </div>
           ) : (
