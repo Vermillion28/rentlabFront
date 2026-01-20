@@ -64,141 +64,141 @@ export default function Contrats() {
   }, []);
 
   // Charger les contrats
-  const fetchContrats = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const token = getToken();
-      const response = await fetch("http://localhost:3001/api/contrats/mes-contrats", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // const fetchContrats = useCallback(async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     const token = getToken();
+  //     const response = await fetch("http://localhost:3001/api/contrats/mes-contrats", {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      if (response.ok) {
-        const data = await response.json();
-        setContrats(data.contrats || []);
-      }
-    } catch (error) {
-      console.error("Erreur lors du chargement des contrats:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [getToken]);
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       setContrats(data.contrats || []);
+  //     }
+  //   } catch (error) {
+  //     console.error("Erreur lors du chargement des contrats:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }, [getToken]);
 
   // Charger les locataires
-  const fetchLocataires = useCallback(async () => {
-    try {
-      const token = getToken();
-      console.log("🔍 Fetching locataires...");
+  // const fetchLocataires = useCallback(async () => {
+  //   try {
+  //     const token = getToken();
+  //     console.log("🔍 Fetching locataires...");
       
-      const response = await fetch("http://localhost:3001/api/contrats/locataires-disponibles", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  //     const response = await fetch("http://localhost:3001/api/contrats/locataires-disponibles", {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      console.log("📊 Response status:", response.status);
+  //     console.log("📊 Response status:", response.status);
       
-      if (response.ok) {
-        const data = await response.json();
-        console.log("✅ Locataires reçus:", data);
-        const locatairesList = data.locataires || [];
-        console.log(`📋 ${locatairesList.length} locataire(s) trouvé(s)`);
-        setLocataires(locatairesList);
-      } else {
-        console.error("❌ Erreur response:", response.status);
-      }
-    } catch (error) {
-      console.error("❌ Erreur lors du chargement des locataires:", error);
-    }
-  }, [getToken]);
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       console.log("✅ Locataires reçus:", data);
+  //       const locatairesList = data.locataires || [];
+  //       console.log(`📋 ${locatairesList.length} locataire(s) trouvé(s)`);
+  //       setLocataires(locatairesList);
+  //     } else {
+  //       console.error("❌ Erreur response:", response.status);
+  //     }
+  //   } catch (error) {
+  //     console.error("❌ Erreur lors du chargement des locataires:", error);
+  //   }
+  // }, [getToken]);
 
   // Charger les biens
-  const fetchBiens = useCallback(async () => {
-    try {
-      const token = getToken();
-      const response = await fetch("http://localhost:3001/api/biens/mes-biens", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // const fetchBiens = useCallback(async () => {
+  //   try {
+  //     const token = getToken();
+  //     const response = await fetch("http://localhost:3001/api/biens/mes-biens", {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      if (response.ok) {
-        const data = await response.json();
-        const biensList = data.biens || [];
-        setBiens(biensList);
-      }
-    } catch (error) {
-      console.error("Erreur lors du chargement des biens:", error);
-    }
-  }, [getToken]);
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       const biensList = data.biens || [];
+  //       setBiens(biensList);
+  //     }
+  //   } catch (error) {
+  //     console.error("Erreur lors du chargement des biens:", error);
+  //   }
+  // }, [getToken]);
 
-  useEffect(() => {
-    fetchContrats();
-    fetchLocataires();
-    fetchBiens();
-  }, [fetchContrats, fetchLocataires, fetchBiens]);
+  // useEffect(() => {
+  //   fetchContrats();
+  //   fetchLocataires();
+  //   fetchBiens();
+  // }, [fetchContrats, fetchLocataires, fetchBiens]);
 
   // Gestion de l'archivage
   const handleArchive = async (contratId) => {
     if (confirm("Êtes-vous sûr de vouloir archiver ce contrat ?")) {
-      try {
-        const token = getToken();
-        const response = await fetch(`http://localhost:3001/api/contrats/${contratId}/terminate`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            date_resiliation: new Date().toISOString().split('T')[0]
-          }),
-        });
+    //   try {
+    //     const token = getToken();
+    //     const response = await fetch(`http://localhost:3001/api/contrats/${contratId}/terminate`, {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //       body: JSON.stringify({
+    //         date_resiliation: new Date().toISOString().split('T')[0]
+    //       }),
+    //     });
 
-        if (response.ok) {
-          fetchContrats();
-          alert('Contrat archivé avec succès');
-        }
-      } catch (error) {
-        console.error('Erreur lors de l\'archivage:', error);
-        alert('Erreur lors de l\'archivage');
-      }
-    }
+    //     if (response.ok) {
+    //       fetchContrats();
+    //       alert('Contrat archivé avec succès');
+    //     }
+    //   } catch (error) {
+    //     console.error('Erreur lors de l\'archivage:', error);
+    //     alert('Erreur lors de l\'archivage');
+    //   }
+    // }
   };
 
   // Gestion du téléchargement PDF
   const handleDownloadPDF = async (contratId) => {
-    try {
-      const token = getToken();
-      setIsLoadingDownload(contratId);
+    // try {
+    //   const token = getToken();
+    //   setIsLoadingDownload(contratId);
       
-      const response = await fetch(`http://localhost:3001/api/contrats/${contratId}/download`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    //   const response = await fetch(`http://localhost:3001/api/contrats/${contratId}/download`, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   });
 
-      if (response.ok) {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `contrat-${contratId}.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-        alert('Contrat téléchargé avec succès !');
-      } else {
-        const errorData = await response.json();
-        alert(`Erreur: ${errorData.message || 'Impossible de télécharger le contrat'}`);
-      }
-    } catch (error) {
-      console.error('Erreur:', error);
-      alert('Erreur lors du téléchargement du contrat');
-    } finally {
-      setIsLoadingDownload(null);
-    }
+    //   if (response.ok) {
+    //     const blob = await response.blob();
+    //     const url = window.URL.createObjectURL(blob);
+    //     const a = document.createElement('a');
+    //     a.href = url;
+    //     a.download = `contrat-${contratId}.pdf`;
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     document.body.removeChild(a);
+    //     window.URL.revokeObjectURL(url);
+    //     alert('Contrat téléchargé avec succès !');
+    //   } else {
+    //     const errorData = await response.json();
+    //     alert(`Erreur: ${errorData.message || 'Impossible de télécharger le contrat'}`);
+    //   }
+    // } catch (error) {
+    //   console.error('Erreur:', error);
+    //   alert('Erreur lors du téléchargement du contrat');
+    // } finally {
+    //   setIsLoadingDownload(null);
+    // }
   };
 
   // FILTRAGE ET RECHERCHE

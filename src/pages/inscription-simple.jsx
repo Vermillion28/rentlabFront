@@ -251,8 +251,7 @@ const handleSubmit = async (e) => {
                   <FiHome /> Bien concerné : {invitationDetails.bien.nom}
                 </p>
               )}
-              <p className={styles.expiryInfo}>
-                Cette invitation expire le {new Date(invitationDetails.expires_at).toLocaleDateString('fr-FR')}
+              <p className={styles.expiryInfo}>Cette invitation expire le {new Date(invitationDetails.expires_at).toLocaleDateString('fr-FR')}
               </p>
             </div>
           ) : (

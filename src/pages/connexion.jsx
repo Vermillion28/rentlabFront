@@ -4,14 +4,15 @@ import Head from 'next/head';
 import { FiMail, FiLock, FiLoader, FiArrowRight } from 'react-icons/fi';
 import axios from 'axios';
 import styles from '../styles/connexion.module.css';
+import Link from 'next/link';
 
 // Créer une instance Axios avec une URL de base
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+// const api = axios.create({
+//   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// });
 
 export default function Login() {
   const router = useRouter();
@@ -22,13 +23,13 @@ export default function Login() {
   const [isMounted, setIsMounted] = useState(false);
 
   // Vérifier si l'utilisateur est déjà connecté
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      router.push('/');
-    }
-    setIsMounted(true);
-  }, [router]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     router.push('/');
+  //   }
+  //   setIsMounted(true);
+  // }, [router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +54,7 @@ export default function Login() {
 
       console.log("Réponse reçue:", response.data);
 
-      // ✅ CORRECTION ICI : La structure est response.data directement
+      //CORRECTION ICI : La structure est response.data directement
       const { token, user } = response.data;
       
       if (!token || !user || !user.role) {
@@ -92,10 +93,10 @@ export default function Login() {
     }
   };
 
-  // Ne rien afficher tant que la vérification n'est pas terminée
-  if (!isMounted) {
-    return null;
-  }
+  // // Ne rien afficher tant que la vérification n'est pas terminée
+  // if (!isMounted) {
+  //   return null;
+  // }
 
   return (
     <div className={styles.loginContainer}>
@@ -105,7 +106,7 @@ export default function Login() {
       </Head>
       
       <div className={styles.loginCard}>
-        <div className={styles.logo}>RENTLAB</div>
+        <div className={styles.logo}><Link href="/">RENTLAB</Link></div>
         <h1 className={styles.title}>Connectez-vous à RENTLAB</h1>
         
         {error && (
